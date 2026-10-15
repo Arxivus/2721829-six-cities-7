@@ -4,7 +4,7 @@ import { AppPaths } from "../../App";
 import { Link } from "react-router-dom";
 
 type FavoritesPageProps = {
-    offers: Offer[],
+  offers: Offer[],
 }
 
 const Favorites = ({ offers }: FavoritesPageProps) => (
@@ -62,7 +62,10 @@ const Favorites = ({ offers }: FavoritesPageProps) => (
                 </div>
               </div>
               <div className="favorites__places">
-                <OffersList offers={offers.filter( offer => (offer.city.name == 'Amsterdam') )}/>
+                <OffersList
+                  offers={offers.filter(offer => (offer.city.name == 'Amsterdam'))}
+                  isStyleFavorite={true}
+                />
               </div>
             </li>
 
@@ -75,7 +78,10 @@ const Favorites = ({ offers }: FavoritesPageProps) => (
                 </div>
               </div>
               <div className="favorites__places">
-                <OffersList offers={offers.filter( offer => (offer.city.name == 'Cologne') )}/>
+                <OffersList
+                  offers={offers.filter(offer => (offer.city.name == 'Cologne'))}
+                  isStyleFavorite={true}
+                />
               </div>
             </li>
           </ul>

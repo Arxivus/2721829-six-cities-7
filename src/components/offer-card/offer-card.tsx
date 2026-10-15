@@ -3,19 +3,20 @@ import { Link } from "react-router-dom";
 
 type OfferCardProps = {
   offer: Offer
+  isStyleFavorite?: boolean
   onMouseEnter?: () => void
   onMouseLeave?: () => void
 }
 
-const OfferCard = ({ offer }: OfferCardProps) => {
+const OfferCard = ({ offer, isStyleFavorite = false }: OfferCardProps) => {
 
   return (
 
-    <article className={` ${offer.isFavorite ? 'favorites__card' : 'cities__card'} place-card`}>
+    <article className={` ${isStyleFavorite ? 'favorites__card' : 'cities__card'} place-card`}>
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
-      <div className={`${offer.isFavorite ? 'favorites__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
+      <div className={`${isStyleFavorite ? 'favorites__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
         </a>

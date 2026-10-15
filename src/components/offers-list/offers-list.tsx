@@ -4,9 +4,10 @@ import OfferCard from "../offer-card/offer-card"
 
 type OffersListProps = {
     offers: Offer[]
+    isStyleFavorite?: boolean
 }
 
-const OffersList = ({ offers }: OffersListProps ) => {
+const OffersList = ({ offers, isStyleFavorite }: OffersListProps ) => {
     const [activeOffer, setActiveOffer] = useState<Offer| null>(null)
 
     return (
@@ -17,6 +18,7 @@ const OffersList = ({ offers }: OffersListProps ) => {
                         <OfferCard 
                         key={offer.id}
                         offer={offer} 
+                        isStyleFavorite={isStyleFavorite}
                         onMouseEnter={() => setActiveOffer(offer)}
                         onMouseLeave={() => setActiveOffer(null)}
                         />
