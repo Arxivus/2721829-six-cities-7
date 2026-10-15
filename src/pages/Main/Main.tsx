@@ -1,10 +1,12 @@
-import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
+import OffersList from "../../components/offers-list/offers-list";
+import { Offer } from "../../mocks/offer";
 
 type MainPageProps = {
-    apartmentsCount: number;
+    offers: Offer[],
+    offersCount: number;
 }
 
-const MainPage = (props: MainPageProps) => (
+const MainPage = ({ offers, offersCount }: MainPageProps) => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -77,7 +79,7 @@ const MainPage = (props: MainPageProps) => (
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{props.apartmentsCount} places to stay in Amsterdam</b>
+            <b className="places__found">{offersCount} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -94,11 +96,7 @@ const MainPage = (props: MainPageProps) => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <ApartmentCard />
-              <ApartmentCard />
-              <ApartmentCard />
-              <ApartmentCard />
-              <ApartmentCard />
+              <OffersList offers={offers} />
             </div>
           </section>
           <div className="cities__right-section">
