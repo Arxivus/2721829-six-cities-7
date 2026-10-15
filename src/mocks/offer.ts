@@ -4,15 +4,17 @@ type Location = {
     zoom: number
 }
 
+type City = {
+    name: string
+    location: Location
+}
+
 type Offer = {
     id: string
     title: string
     type: 'apartment' | 'room' | 'house' | 'hotel'
     price: number
-    city: {
-        name: string
-        location: Location
-    }
+    city: City
     location: Location
     isFavorite: boolean
     isPremium: boolean
@@ -118,5 +120,6 @@ const offersMock: Offer[] = [
 export {
     type Offer,
     type Location,
+    type City,
     offersMock
 }

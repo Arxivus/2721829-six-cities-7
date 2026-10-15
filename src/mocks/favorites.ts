@@ -1,14 +1,11 @@
-import { Location } from "./offer"
+import { Location, City } from "./offer"
 
 type FavoriteOffer = {
     id: string
     title: string
     type: 'apartment' | 'room' | 'house' | 'hotel'
     price: number
-    city: {
-        name: string
-        location: Location
-    }
+    city: City
     location: Location
     isFavorite: boolean
     isPremium: boolean
@@ -23,7 +20,7 @@ const favoriteOffersMock: FavoriteOffer[] = [
         type: 'apartment',
         price: 95,
         city: {
-            name: 'Paris',
+            name: 'Amsterdam',
             location: {
                 latitude: 52.3702,
                 longitude: 4.8952,
@@ -58,7 +55,7 @@ const favoriteOffersMock: FavoriteOffer[] = [
             longitude: 4.8850,
             zoom: 14,
         },
-        isFavorite: false,
+        isFavorite: true,
         isPremium: true,
         rating: 4,
         previewImage: 'https://url-to-image/image.png',
@@ -92,7 +89,7 @@ const favoriteOffersMock: FavoriteOffer[] = [
         type: 'hotel',
         price: 180,
         city: {
-            name: 'Hamburg',
+            name: 'Cologne',
             location: {
                 latitude: 52.35514938496378,
                 longitude: 4.673877537499948,
@@ -104,7 +101,7 @@ const favoriteOffersMock: FavoriteOffer[] = [
             longitude: 4.9000,
             zoom: 13,
         },
-        isFavorite: false,
+        isFavorite: true,
         isPremium: false,
         rating: 3,
         previewImage: 'https://url-to-image/image.png',

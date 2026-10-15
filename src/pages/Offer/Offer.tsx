@@ -1,4 +1,4 @@
-import ReviewForm from "../../components/ReviewForm/ReviewForm";
+import ReviewForm from "../../components/review-form/review-form";
 import { Link } from "react-router-dom";
 import { AppPaths } from "../../App";
 

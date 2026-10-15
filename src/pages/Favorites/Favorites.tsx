@@ -1,5 +1,5 @@
 import { Offer } from "../../mocks/offer";
-import OffersList from "../../components/OffersList/OffersList";
+import OffersList from "../../components/offers-list/offers-list";
 import { AppPaths } from "../../App";
 import { Link } from "react-router-dom";
 
@@ -62,7 +62,7 @@ const Favorites = ({ offers }: FavoritesPageProps) => (
                 </div>
               </div>
               <div className="favorites__places">
-                <OffersList offers={offers}/>
+                <OffersList offers={offers.filter( offer => (offer.city.name == 'Amsterdam') )}/>
               </div>
             </li>
 
@@ -75,7 +75,7 @@ const Favorites = ({ offers }: FavoritesPageProps) => (
                 </div>
               </div>
               <div className="favorites__places">
-                <OffersList offers={offers}/>
+                <OffersList offers={offers.filter( offer => (offer.city.name == 'Cologne') )}/>
               </div>
             </li>
           </ul>

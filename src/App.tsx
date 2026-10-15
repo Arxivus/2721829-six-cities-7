@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainPage from './pages/Main/Main';
-import NotFound from './pages/NotFound/NotFound';
-import Login from './pages/Login/Login';
-import Favorites from './pages/Favorites/Favorites';
-import Offer from './pages/Offer/Offer';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import MainPage from './pages/main/main';
+import NotFound from './pages/not-found/not-found';
+import Login from './pages/login/login';
+import Favorites from './pages/favorites/favorites';
+import Offer from './pages/offer/offer';
+import PrivateRoute from './components/private-route/private-route';
 import { Offer as OfferType } from './mocks/offer';
 import { FavoriteOffer } from './mocks/favorites';
 
@@ -22,7 +22,7 @@ type AppProps = {
 }
 
 
-const App = ({ offers }: AppProps) => (
+const App = ({ offers, favoriteOffers }: AppProps) => (
   <BrowserRouter>
     <Routes>
       <Route
@@ -42,7 +42,7 @@ const App = ({ offers }: AppProps) => (
         path={AppPaths.Favorites}
         element={
           <PrivateRoute isAuthenticated={true}>
-            <Favorites offers={offers}/>
+            <Favorites offers={favoriteOffers}/>
           </PrivateRoute>
         }
       />
