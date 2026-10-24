@@ -31,8 +31,8 @@ const offersMock: Offer[] = [
         city: {
             name: 'Amsterdam',
             location: {
-                latitude: 52.3702,
-                longitude: 4.8952,
+                latitude: 53.3909553943508,
+                longitude: 4.85309666406198,
                 zoom: 8,
             },
         },
@@ -43,7 +43,7 @@ const offersMock: Offer[] = [
         },
         isFavorite: true,
         isPremium: false,
-        rating: 4,
+        rating: 5,
         previewImage: 'https://url-to-image/image.png',
     },
     {
@@ -54,8 +54,8 @@ const offersMock: Offer[] = [
         city: {
             name: 'Amsterdam',
             location: {
-                latitude: 52.35514938496378,
-                longitude: 4.673877537499948,
+                latitude: 52.3609553943508,
+                longitude: 4.85309666406198,
                 zoom: 8,
             },
         },
@@ -64,9 +64,9 @@ const offersMock: Offer[] = [
             longitude: 4.8850,
             zoom: 14,
         },
-        isFavorite: false,
+        isFavorite: true,
         isPremium: true,
-        rating: 5,
+        rating: 4,
         previewImage: 'https://url-to-image/image.png',
     },
     {
@@ -75,10 +75,10 @@ const offersMock: Offer[] = [
         type: 'house',
         price: 220,
         city: {
-            name: 'Paris',
+            name: 'Amsterdam',
             location: {
-                latitude: 52.35514938496378,
-                longitude: 4.673877537499948,
+                latitude: 52.3909553943508,
+                longitude: 4.929309666406198,
                 zoom: 8,
             },
         },
@@ -98,10 +98,10 @@ const offersMock: Offer[] = [
         type: 'hotel',
         price: 180,
         city: {
-            name: 'Hamburg',
+            name: 'Amsterdam',
             location: {
-                latitude: 52.35514938496378,
-                longitude: 4.673877537499948,
+                latitude: 52.3809553943508,
+                longitude: 4.939309666406198,
                 zoom: 8,
             },
         },
@@ -110,9 +110,9 @@ const offersMock: Offer[] = [
             longitude: 4.9000,
             zoom: 13,
         },
-        isFavorite: false,
+        isFavorite: true,
         isPremium: false,
-        rating: 4,
+        rating: 3,
         previewImage: 'https://url-to-image/image.png',
     },
 ]
