@@ -122,7 +122,7 @@ const MainPage = ({ offers, offersCount }: MainPageProps) => {
             <div className="cities__right-section">
               <section
                 className="cities__map map"
-                style={{ maxWidth: '512px', backgroundImage: 'none', overflow: 'hidden' }}
+                style={{ maxWidth: '512px', maxHeight: '800px', backgroundImage: 'none', overflow: 'hidden' }}
               >
                 <Map offers={offers} city={mockCity} selectedOffer={undefined} />
               </section>
