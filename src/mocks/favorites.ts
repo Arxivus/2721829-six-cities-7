@@ -1,17 +1,4 @@
-import { Location, City } from "./offer"
-
-type FavoriteOffer = {
-    id: string
-    title: string
-    type: 'apartment' | 'room' | 'house' | 'hotel'
-    price: number
-    city: City
-    location: Location
-    isFavorite: boolean
-    isPremium: boolean
-    rating: number
-    previewImage: string
-}
+import { FavoriteOffer } from "../types/types"
 
 const favoriteOffersMock: FavoriteOffer[] = [
     {

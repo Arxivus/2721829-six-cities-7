@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { type Offer } from "../../mocks/offer"
+import { Offer } from "../../types/types"
 import OfferCard from "../offer-card/offer-card"
 
 type OffersListProps = {
-    offers: Offer[]
+    offers?: Offer[]
     isStyleFavorite?: boolean
 }
 

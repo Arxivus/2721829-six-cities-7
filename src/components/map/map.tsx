@@ -1,12 +1,12 @@
 import { Icon, Marker, layerGroup } from 'leaflet';
-import { City, Offer } from '../../mocks/offer';
+import { City, Offer } from '../../types/types';
 import { useEffect, useRef } from 'react';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import useMap from '../../hooks/use-map';
 
 type MapProps = {
-    city: City
-    offers: Offer[]
+    city?: City
+    offers?: Offer[]
     selectedOffer: Offer | undefined
 }
 
@@ -32,7 +32,7 @@ const Map = ({ city, offers, selectedOffer }: MapProps) => {
         if (map) {
 
             const markerLayer = layerGroup().addTo(map)
-            offers.forEach((offer) => {
+            offers?.forEach((offer) => {
 
                 const marker = new Marker({
                     lat: offer.location.latitude,

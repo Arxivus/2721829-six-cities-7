@@ -1,26 +1,4 @@
-type Location = {
-    latitude: number
-    longitude: number
-    zoom: number
-}
-
-type City = {
-    name: string
-    location: Location
-}
-
-type Offer = {
-    id: string
-    title: string
-    type: 'apartment' | 'room' | 'house' | 'hotel'
-    price: number
-    city: City
-    location: Location
-    isFavorite: boolean
-    isPremium: boolean
-    rating: number
-    previewImage: string
-}
+import { Offer } from "../types/types"
 
 const offersMock: Offer[] = [
     {
@@ -60,13 +38,36 @@ const offersMock: Offer[] = [
             },
         },
         location: {
-            latitude: 52.3600,
-            longitude: 4.8850,
+            latitude: 50.9600,
+            longitude: 4.1850,
             zoom: 14,
         },
         isFavorite: true,
         isPremium: true,
         rating: 4,
+        previewImage: 'https://url-to-image/image.png',
+    },
+    {
+        id: '4d5e6f7a-4444-4d5e-8f6a-e0b462a27f04',
+        title: 'Luxury hotel suite with river view',
+        type: 'hotel',
+        price: 180,
+        city: {
+            name: 'Cologne',
+            location: {
+                latitude: 50.3809553943508,
+                longitude: 6.939309666406198,
+                zoom: 8,
+            },
+        },
+        location: {
+            latitude: 50.3809,
+            longitude: 6.9393,
+            zoom: 13,
+        },
+        isFavorite: true,
+        isPremium: false,
+        rating: 3,
         previewImage: 'https://url-to-image/image.png',
     },
     {
@@ -106,8 +107,8 @@ const offersMock: Offer[] = [
             },
         },
         location: {
-            latitude: 52.3780,
-            longitude: 4.9000,
+            latitude: 52.2780,
+            longitude: 4.7000,
             zoom: 13,
         },
         isFavorite: true,
@@ -115,6 +116,99 @@ const offersMock: Offer[] = [
         rating: 3,
         previewImage: 'https://url-to-image/image.png',
     },
+    {
+        id: '4d5e6f7a-4444-4d5e-8f6a-e0b462a27f04',
+        title: 'Luxury hotel suite with river view',
+        type: 'hotel',
+        price: 180,
+        city: {
+            name: 'Paris',
+            location: {
+                latitude: 48.8566553943508,
+                longitude: 2.352209666406198,
+                zoom: 8,
+            },
+        },
+        location: {
+            latitude: 48.9566,
+            longitude: 2.3622,
+            zoom: 13,
+        },
+        isFavorite: true,
+        isPremium: false,
+        rating: 3,
+        previewImage: 'https://url-to-image/image.png',
+    },
+    {
+        id: '4d5e6f7a-4444-4d5e-8f6a-e0b462a27f04',
+        title: 'Luxury hotel suite with river view',
+        type: 'hotel',
+        price: 180,
+        city: {
+            name: 'Hamburg',
+            location: {
+                latitude: 48.8566553943508,
+                longitude: 2.352209666406198,
+                zoom: 8,
+            },
+        },
+        location: {
+            latitude: 48.9566,
+            longitude: 2.3622,
+            zoom: 13,
+        },
+        isFavorite: true,
+        isPremium: false,
+        rating: 3,
+        previewImage: 'https://url-to-image/image.png',
+    },
+    {
+        id: '4d5e6f7a-4444-4d5e-8f6a-e0b462a27f04',
+        title: 'Luxury hotel suite with river view',
+        type: 'hotel',
+        price: 180,
+        city: {
+            name: 'Dusseldorf',
+            location: {
+                latitude: 48.8566553943508,
+                longitude: 2.352209666406198,
+                zoom: 8,
+            },
+        },
+        location: {
+            latitude: 48.9566,
+            longitude: 2.3622,
+            zoom: 13,
+        },
+        isFavorite: true,
+        isPremium: false,
+        rating: 3,
+        previewImage: 'https://url-to-image/image.png',
+    },
+    {
+        id: '4d5e6f7a-4444-4d5e-8f6a-e0b462a27f04',
+        title: 'Luxury hotel suite with river view',
+        type: 'hotel',
+        price: 180,
+        city: {
+            name: 'Brussels',
+            location: {
+                latitude: 48.8566553943508,
+                longitude: 2.352209666406198,
+                zoom: 8,
+            },
+        },
+        location: {
+            latitude: 48.9566,
+            longitude: 2.3622,
+            zoom: 13,
+        },
+        isFavorite: true,
+        isPremium: false,
+        rating: 3,
+        previewImage: 'https://url-to-image/image.png',
+    },
+
 ]
 
 const nearOffersMock: Offer[] = [
@@ -190,9 +284,6 @@ const nearOffersMock: Offer[] = [
 ]
 
 export {
-    type Offer,
-    type Location,
-    type City,
     offersMock,
     nearOffersMock,
 }
