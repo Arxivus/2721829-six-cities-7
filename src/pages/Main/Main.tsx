@@ -3,11 +3,12 @@ import { City, Offer } from "../../types/types";
 import Map from "../../components/map/map";
 import { useEffect, useState } from "react";
 import CitiesList from "../../components/cities-list/cities-list";
-import cities from "../../cities";
+import { cities, filterVariants } from "../../data";
 import { useStore } from "react-redux";
-import { changeCity, fillByOffers } from "../../action";
+import { changeCity, fillByOffers, filterOffers } from "../../action";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../../store";
+import { FilterVariants } from "../../components/filter-variants/filter-variants";
 
 type MainPageProps = {
   offers: Offer[],
@@ -19,13 +20,15 @@ const MainPage = ({ offers }: MainPageProps) => {
   const store = useStore()
   const currentCity = useSelector((state: RootState) => state.city)
   const currentOffers = useSelector((state: RootState) => state.offers)
-
-  const [selectedOffer, setSelectedOffer] = useState<Offer>()
-  const handleHoverOffer = () => {}
+  const activeMarker = useSelector((state: RootState) => state.activeMarker)
 
   const handleChangeCity = (newCity: City | undefined) => {
     store.dispatch(changeCity(newCity))
     store.dispatch(fillByOffers(offers.filter(offer => offer.city.name == newCity?.name)))
+  }
+
+  const handleFilterChange = (filterName: string) => {
+      store.dispatch(filterOffers(filterName))
   }
 
   useEffect(() => {
@@ -71,7 +74,11 @@ const MainPage = ({ offers }: MainPageProps) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CitiesList cities={cities} currentCity={currentCity} changeCurrentCity={handleChangeCity}/>
+            <CitiesList
+              cities={cities}
+              currentCity={currentCity}
+              changeCurrentCity={handleChangeCity}
+            />
           </section>
         </div>
         <div className="cities">
@@ -79,21 +86,10 @@ const MainPage = ({ offers }: MainPageProps) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{currentOffers?.length} places to stay in {currentCity?.name}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
+              <FilterVariants
+                variants={filterVariants}
+                filterBy={handleFilterChange}
+              />
               <div className="cities__places-list places__list tabs__content">
                 <OffersList offers={currentOffers} />
               </div>
@@ -104,7 +100,7 @@ const MainPage = ({ offers }: MainPageProps) => {
                 style={{ maxWidth: '512px', maxHeight: '800px', backgroundImage: 'none', overflow: 'hidden' }}
               >
                 {
-                  currentCity && currentOffers && <Map offers={currentOffers} city={currentCity} selectedOffer={undefined} />
+                  currentCity && currentOffers && <Map offers={currentOffers} city={currentCity} activeMarker={activeMarker} />
                 }
               </section>
             </div>

@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Offer } from "../../types/types"
 import OfferCard from "../offer-card/offer-card"
 
@@ -7,20 +6,17 @@ type OffersListProps = {
     isStyleFavorite?: boolean
 }
 
-const OffersList = ({ offers, isStyleFavorite }: OffersListProps ) => {
-    const [activeOffer, setActiveOffer] = useState<Offer| null>(null)
+const OffersList = ({ offers, isStyleFavorite }: OffersListProps) => {
 
     return (
         <>
             {
                 offers ? (
                     offers.map(offer => (
-                        <OfferCard 
-                        key={offer.id}
-                        offer={offer} 
-                        isStyleFavorite={isStyleFavorite}
-                        onMouseEnter={() => setActiveOffer(offer)}
-                        onMouseLeave={() => setActiveOffer(null)}
+                        <OfferCard
+                            key={offer.id}
+                            offer={offer}
+                            isStyleFavorite={isStyleFavorite}
                         />
                     ))
                 ) : <div>Предложения не найдены</div>

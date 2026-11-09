@@ -1,13 +1,13 @@
 import { Icon, Marker, layerGroup } from 'leaflet';
-import { City, Offer } from '../../types/types';
+import { City, Offer, Location } from '../../types/types';
 import { useEffect, useRef } from 'react';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../data'
 import useMap from '../../hooks/use-map';
 
 type MapProps = {
-    city?: City
+    city: City
     offers?: Offer[]
-    selectedOffer: Offer | undefined
+    activeMarker: Location | undefined
 }
 
 const defaultCustomIcon = new Icon({
@@ -22,13 +22,13 @@ const currentCustomIcon = new Icon({
     iconAnchor: [20, 40]
 })
 
-const Map = ({ city, offers, selectedOffer }: MapProps) => {
+const Map = ({ city, offers, activeMarker }: MapProps) => {
 
     const mapRef = useRef(null)
     const map = useMap(mapRef, city)
 
     useEffect(() => {
-
+        
         if (map) {
 
             const markerLayer = layerGroup().addTo(map)
@@ -40,7 +40,8 @@ const Map = ({ city, offers, selectedOffer }: MapProps) => {
                 });
 
                 marker.setIcon(
-                    selectedOffer !== undefined && offer.title === selectedOffer.title
+                    activeMarker !== undefined &&
+                        offer.location.longitude == activeMarker.longitude && offer.location.latitude == activeMarker.latitude
                         ? currentCustomIcon
                         : defaultCustomIcon
                 ).addTo(markerLayer)
@@ -50,7 +51,7 @@ const Map = ({ city, offers, selectedOffer }: MapProps) => {
             return () => { map.removeLayer(markerLayer) }
         }
 
-    }, [map, offers, selectedOffer]);
+    }, [map, offers, activeMarker]);
 
     return <div ref={mapRef}></div>;
 }

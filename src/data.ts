@@ -27,4 +27,19 @@ const cities: City[] = [
     },
 ]
 
-export default cities
+const filterVariants = [
+    'Popular',
+    'Price: low to high',
+    'Price: high to low',
+    'Top rated first'
+]
+
+const URL_MARKER_DEFAULT = '/img/pin.svg'
+const URL_MARKER_CURRENT = '/img/pin-active.svg'
+
+export {
+    filterVariants,
+    cities,
+    URL_MARKER_CURRENT,
+    URL_MARKER_DEFAULT
+}

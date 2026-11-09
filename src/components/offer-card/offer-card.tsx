@@ -1,18 +1,42 @@
-import { Offer } from "../../mocks/offer";
+import { Offer } from "../../types/types";
 import { Link } from "react-router-dom";
+import { useStore } from "react-redux";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { RootState } from "../../store";
+import { setActiveMarker } from "../../action";
 
 type OfferCardProps = {
   offer: Offer
   isStyleFavorite?: boolean
-  onMouseEnter?: () => void
-  onMouseLeave?: () => void
 }
 
 const OfferCard = ({ offer, isStyleFavorite = false }: OfferCardProps) => {
 
+  const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+
+  const store = useStore()
+  const activeMarker = useSelector((state: RootState) => state.activeMarker)
+
+  const handleCardHover = () => {
+    store.dispatch(setActiveMarker(offer.location))
+  }
+
+  const handleCardLeave = () => {
+    const offerLat = offer.location.latitude
+    const offerLon = offer.location.longitude
+
+    if (activeMarker && offerLat == activeMarker.latitude && offerLon == activeMarker.longitude) {
+      store.dispatch(setActiveMarker(undefined))
+    }
+  }
+
   return (
 
-    <article className={` ${isStyleFavorite ? 'favorites__card' : 'cities__card'} place-card`}>
+    <article
+      className={` ${isStyleFavorite ? 'favorites__card' : 'cities__card'} place-card`}
+      onMouseEnter={handleCardHover}
+      onMouseLeave={handleCardLeave}
+    >
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
@@ -24,7 +48,7 @@ const OfferCard = ({ offer, isStyleFavorite = false }: OfferCardProps) => {
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;120</b>
+            <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
@@ -36,16 +60,16 @@ const OfferCard = ({ offer, isStyleFavorite = false }: OfferCardProps) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: `${offer.rating * 20}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>
-            Beautiful &amp; luxurious apartment at great location
+            {offer.title}
           </Link>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{capitalize(offer.type)}</p>
       </div>
     </article>
   )
