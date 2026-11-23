@@ -5,7 +5,7 @@ import Login from './pages/login/login';
 import Favorites from './pages/favorites/favorites';
 import Offer from './pages/offer/offer';
 import PrivateRoute from './components/private-route/private-route';
-import { Offer as OfferType } from './mocks/offer';
+import { Offer as OfferType } from './types/types';
 import { FavoriteOffer } from './mocks/favorites';
 
 const AppPaths = {

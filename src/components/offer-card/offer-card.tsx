@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useStore } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../../store";
-import { setActiveMarker } from "../../action";
+import { setActiveMarker } from "../../store/action";
 
 type OfferCardProps = {
   offer: Offer

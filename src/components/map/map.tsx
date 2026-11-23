@@ -6,7 +6,7 @@ import useMap from '../../hooks/use-map';
 
 type MapProps = {
     city: City
-    offers?: Offer[]
+    offers: Offer[]
     activeMarker: Location | undefined
 }
 

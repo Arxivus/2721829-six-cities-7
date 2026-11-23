@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import CitiesList from "../../components/cities-list/cities-list";
 import { cities, filterVariants } from "../../data";
 import { useStore } from "react-redux";
-import { changeCity, fillByOffers, filterOffers } from "../../action";
+import { changeCity, fillByOffers, filterOffers } from "../../store/action";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../../store";
 import { FilterVariants } from "../../components/filter-variants/filter-variants";

@@ -4,7 +4,7 @@ import { AppPaths } from "../../App";
 import ReviewList from "../../components/review-list/review-list";
 import mockReviews from "../../mocks/reviews";
 import Map from "../../components/map/map";
-import { City } from "../../mocks/offer";
+import { City } from "../../types/types";
 import { nearOffersMock } from "../../mocks/offer";
 import OffersList from "../../components/offers-list/offers-list";
 
@@ -176,7 +176,7 @@ const Offer = () => (
         </div>
 
         <section className="offer__map map container" style={{ maxWidth: '1144px', backgroundImage: 'none', overflow: 'hidden' }}>
-          <Map offers={nearOffersMock} city={mockCity} selectedOffer={undefined}/>
+          <Map offers={nearOffersMock} city={mockCity} activeMarker={undefined}/>
         </section>
       </section>
 

@@ -1,21 +1,8 @@
 import { createReducer } from "@reduxjs/toolkit"
 import { fillByOffers, changeCity, filterOffers, setActiveMarker } from "./action"
-import { City, Offer, Location } from "./types/types"
-import { filterVariants } from "./data"
+import { offersState, OffersStorage } from "./store"
+import { filterVariants } from "../data"
 
-type OffersStorage = {
-  city: City | undefined,
-  offers: Offer[]
-  unSortedOffers: Offer[]
-  activeMarker: Location | undefined
-}
-
-const offersState: OffersStorage = {
-  city: undefined,
-  offers: [],
-  unSortedOffers: [],
-  activeMarker: undefined
-}
 
 const offersReducer = createReducer(offersState, (builder) => {
   builder
@@ -49,7 +36,5 @@ const offersReducer = createReducer(offersState, (builder) => {
 })
 
 export {
-  offersReducer,
-  offersState,
-  type OffersStorage
+  offersReducer
 }

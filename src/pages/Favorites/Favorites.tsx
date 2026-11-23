@@ -1,4 +1,4 @@
-import { Offer } from "../../mocks/offer";
+import { Offer } from "../../types/types";
 import OffersList from "../../components/offers-list/offers-list";
 import { AppPaths } from "../../App";
 import { Link } from "react-router-dom";
