@@ -5,59 +5,70 @@ import Login from './pages/login/login';
 import Favorites from './pages/favorites/favorites';
 import Offer from './pages/offer/offer';
 import PrivateRoute from './components/private-route/private-route';
-import { Offer as OfferType } from './types/types';
-import { FavoriteOffer } from './mocks/favorites';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { fetchQuestionAction } from './store/api-actions';
+import { AppDispatch } from './store';
+import { RootState } from './store';
+
 
 const AppPaths = {
   Main: '/',
   Login: '/login',
   Favorites: '/favorites',
   Offer: '/offer/:id',
-  
+
 } as const
 
-type AppProps = {
-  offers: OfferType[]
-  favoriteOffers: FavoriteOffer[]
+
+const App = () => {
+
+  const dispatch = useDispatch<AppDispatch>()
+
+  useEffect(() => {
+    dispatch(fetchQuestionAction())
+
+  }, [dispatch])
+
+  const currentOffers = useSelector((state: RootState) => state.offers)
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={AppPaths.Main}
+          element={
+            <MainPage
+              offers={currentOffers}
+              offersCount={currentOffers.length}
+            />
+          }
+        />
+        <Route
+          path={AppPaths.Login}
+          element={<Login />}
+        />
+        <Route
+          path={AppPaths.Favorites}
+          element={
+            <PrivateRoute isAuthenticated={true}>
+              <Favorites offers={[]} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={AppPaths.Offer}
+          element={<Offer />}
+        />
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
+      </Routes>
+    </BrowserRouter>
+  )
 }
-
-
-const App = ({ offers, favoriteOffers }: AppProps) => (
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path={AppPaths.Main}
-        element={
-          <MainPage
-            offers={offers}
-            offersCount={offers.length}
-          />
-        }
-      />
-      <Route
-        path={AppPaths.Login}
-        element={<Login />}
-      />
-      <Route
-        path={AppPaths.Favorites}
-        element={
-          <PrivateRoute isAuthenticated={true}>
-            <Favorites offers={favoriteOffers}/>
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path={AppPaths.Offer}
-        element={<Offer />}
-      />
-      <Route
-        path='*'
-        element={<NotFound />}
-      />
-    </Routes>
-  </BrowserRouter>
-
-);
 
 export {
   App,

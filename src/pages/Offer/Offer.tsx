@@ -5,7 +5,6 @@ import ReviewList from "../../components/review-list/review-list";
 import mockReviews from "../../mocks/reviews";
 import Map from "../../components/map/map";
 import { City } from "../../types/types";
-import { nearOffersMock } from "../../mocks/offer";
 import OffersList from "../../components/offers-list/offers-list";
 
 const mockCity: City = {
@@ -176,7 +175,7 @@ const Offer = () => (
         </div>
 
         <section className="offer__map map container" style={{ maxWidth: '1144px', backgroundImage: 'none', overflow: 'hidden' }}>
-          <Map offers={nearOffersMock} city={mockCity} activeMarker={undefined}/>
+          <Map offers={[]} city={mockCity} activeMarker={undefined}/>
         </section>
       </section>
 
@@ -186,7 +185,7 @@ const Offer = () => (
             Other places in the neighbourhood
           </h2>
           <div className="near-places__list places__list">
-            <OffersList offers={nearOffersMock}/>
+            <OffersList offers={[]}/>
           </div>
         </section>
       </div>

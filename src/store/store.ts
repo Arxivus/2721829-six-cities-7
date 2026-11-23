@@ -1,17 +1,20 @@
+import { cities } from "../const"
 import { City, Offer, Location } from "../types/types"
 
 type OffersStorage = {
   city: City | undefined,
   offers: Offer[]
-  unSortedOffers: Offer[]
+  filteredOffers: Offer[]
   activeMarker: Location | undefined
+  isLoadingOffers: boolean
 }
 
 const offersState: OffersStorage = {
-  city: undefined,
+  city: cities[0],
   offers: [],
-  unSortedOffers: [],
-  activeMarker: undefined
+  filteredOffers: [],
+  activeMarker: undefined,
+  isLoadingOffers: true,
 }
 
 export {

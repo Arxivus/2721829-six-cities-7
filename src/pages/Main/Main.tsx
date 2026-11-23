@@ -1,14 +1,14 @@
 import OffersList from "../../components/offers-list/offers-list";
 import { City, Offer } from "../../types/types";
 import Map from "../../components/map/map";
-import { useEffect, useState } from "react";
 import CitiesList from "../../components/cities-list/cities-list";
-import { cities, filterVariants } from "../../data";
-import { useStore } from "react-redux";
-import { changeCity, fillByOffers, filterOffers } from "../../store/action";
+import { cities, filterVariants } from "../../const";
+import { useDispatch } from "react-redux";
+import { changeCity, filterOffers } from "../../store/action";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { RootState } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import { FilterVariants } from "../../components/filter-variants/filter-variants";
+import { Spinner } from "../../components/spinner/spinner";
 
 type MainPageProps = {
   offers: Offer[],
@@ -17,25 +17,22 @@ type MainPageProps = {
 
 const MainPage = ({ offers }: MainPageProps) => {
 
-  const store = useStore()
+  const dispatch = useDispatch<AppDispatch>()
+
   const currentCity = useSelector((state: RootState) => state.city)
-  const currentOffers = useSelector((state: RootState) => state.offers)
+  const currentOffers = offers.filter(offer => offer.city.name === currentCity?.name)
   const activeMarker = useSelector((state: RootState) => state.activeMarker)
+  const isLoading = useSelector((state: RootState) => state.isLoadingOffers)
 
   const handleChangeCity = (newCity: City | undefined) => {
-    store.dispatch(changeCity(newCity))
-    store.dispatch(fillByOffers(offers.filter(offer => offer.city.name == newCity?.name)))
+    if (!newCity) return
+
+    dispatch(changeCity(newCity))
   }
 
   const handleFilterChange = (filterName: string) => {
-      store.dispatch(filterOffers(filterName))
+    dispatch(filterOffers(filterName))
   }
-
-  useEffect(() => {
-    if (cities && offers) {
-      handleChangeCity(cities.find(city => city.name == 'Paris'))
-    }
-  }, [])
 
 
   return (
@@ -91,7 +88,10 @@ const MainPage = ({ offers }: MainPageProps) => {
                 filterBy={handleFilterChange}
               />
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={currentOffers} />
+                {
+                  isLoading ? <Spinner />
+                    : <OffersList offers={currentOffers} />
+                }
               </div>
             </section>
             <div className="cities__right-section">
