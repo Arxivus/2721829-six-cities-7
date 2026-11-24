@@ -41,10 +41,25 @@ type FavoriteOffer = {
     previewImage: string
 }
 
+type UserInfo = {
+    name: string
+    avatarUrl: string
+    isPro: boolean
+    email: string
+    token: string
+}
+
+type AuthData = {
+    email: string
+    password: string
+}
+
 export {
     type User,
     type City,
     type Location,
     type Offer,
-    type FavoriteOffer
+    type FavoriteOffer,
+    type UserInfo,
+    type AuthData
 }

@@ -1,5 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { fillByOffers, changeCity, filterOffers, setActiveMarker, setLoadingStatus } from "./action"
+import {
+  fillByOffers,
+  changeCity,
+  filterOffers,
+  setActiveMarker,
+  setLoadingStatus,
+  changeAuthStatus,
+  setUserData
+} from "./action"
 import { offersState } from "./store"
 import { filterVariants } from "../const"
 
@@ -32,10 +40,14 @@ const offersReducer = createReducer(offersState, (builder) => {
       state.activeMarker = action.payload;
     })
     .addCase(setLoadingStatus, (state, action) => {
-      state.isLoadingOffers =  action.payload;
-    }
-
-)
+      state.isLoadingOffers = action.payload;
+    })
+    .addCase(changeAuthStatus, (state, action) => {
+      state.authorizationStatus = action.payload
+    })
+    .addCase(setUserData, (state, action) => {
+      state.user = action.payload
+    }) 
 
 })
 

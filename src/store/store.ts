@@ -1,7 +1,9 @@
 import { cities } from "../const"
-import { City, Offer, Location } from "../types/types"
+import { City, Offer, Location, UserInfo } from "../types/types"
 
 type OffersStorage = {
+  authorizationStatus: string,
+  user: UserInfo | undefined,
   city: City | undefined,
   offers: Offer[]
   filteredOffers: Offer[]
@@ -10,6 +12,8 @@ type OffersStorage = {
 }
 
 const offersState: OffersStorage = {
+  authorizationStatus: 'Unknown',
+  user: undefined,
   city: cities[0],
   offers: [],
   filteredOffers: [],

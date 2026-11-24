@@ -2,13 +2,15 @@ import OffersList from "../../components/offers-list/offers-list";
 import { City, Offer } from "../../types/types";
 import Map from "../../components/map/map";
 import CitiesList from "../../components/cities-list/cities-list";
-import { cities, filterVariants } from "../../const";
+import { AuthorizationStatus, cities, filterVariants } from "../../const";
 import { useDispatch } from "react-redux";
 import { changeCity, filterOffers } from "../../store/action";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { AppDispatch, RootState } from "../../store";
 import { FilterVariants } from "../../components/filter-variants/filter-variants";
 import { Spinner } from "../../components/spinner/spinner";
+import { Link } from "react-router-dom"
+import { AppPaths } from "../../App";
 
 type MainPageProps = {
   offers: Offer[],
@@ -23,6 +25,8 @@ const MainPage = ({ offers }: MainPageProps) => {
   const currentOffers = offers.filter(offer => offer.city.name === currentCity?.name)
   const activeMarker = useSelector((state: RootState) => state.activeMarker)
   const isLoading = useSelector((state: RootState) => state.isLoadingOffers)
+  const authStatus = useSelector((state: RootState) => state.authorizationStatus)
+  const user = useSelector((state: RootState) => state.user)
 
   const handleChangeCity = (newCity: City | undefined) => {
     if (!newCity) return
@@ -48,19 +52,30 @@ const MainPage = ({ offers }: MainPageProps) => {
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
+                {
+                  authStatus === AuthorizationStatus.Auth ?
+                    <>
+                      <li className="header__nav-item user">
+                        <a className="header__nav-link header__nav-link--profile" href="#">
+                          <div className="header__avatar-wrapper user__avatar-wrapper">
+                          </div>
+                          <span className="header__user-name user__name">{user?.email}</span>
+                          <span className="header__favorite-count">3</span>
+                        </a>
+                      </li>
+                      <li className="header__nav-item">
+                        <a className="header__nav-link" href="#">
+                          <span className="header__signout">Sign out</span>
+                        </a>
+                      </li>
+                    </>
+                    :
+                    <li className="header__nav-item">
+                      <Link className="header__nav-link" to={AppPaths.Login}>
+                          <span className="header__signout">Sign in</span>
+                      </Link>
+                    </li>
+                }
               </ul>
             </nav>
           </div>

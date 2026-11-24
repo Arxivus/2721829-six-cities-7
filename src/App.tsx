@@ -8,7 +8,7 @@ import PrivateRoute from './components/private-route/private-route';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { fetchQuestionAction } from './store/api-actions';
+import { fetchAuthAction, fetchOffersAction } from './store/api-actions';
 import { AppDispatch } from './store';
 import { RootState } from './store';
 
@@ -27,7 +27,8 @@ const App = () => {
   const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
-    dispatch(fetchQuestionAction())
+    dispatch(fetchOffersAction())
+    dispatch(fetchAuthAction())
 
   }, [dispatch])
 
@@ -52,7 +53,7 @@ const App = () => {
         <Route
           path={AppPaths.Favorites}
           element={
-            <PrivateRoute isAuthenticated={true}>
+            <PrivateRoute>
               <Favorites offers={[]} />
             </PrivateRoute>
           }

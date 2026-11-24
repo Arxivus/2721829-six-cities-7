@@ -4,6 +4,7 @@ const baseURL = 'https://14.design.htmlacademy.pro/six-cities'
 const timeout = 5000
 
 const APIRoutes = {
+    Login: '/login',
     Offers: '/offers',
     Favorite: '/favorite'
 

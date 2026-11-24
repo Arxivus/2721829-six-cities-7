@@ -1,14 +1,18 @@
 import { Navigate } from "react-router-dom"
 import { AppPaths } from "../../App"
+import { useSelector } from "react-redux"
+import { AuthorizationStatus,  } from "../../const"
+import { RootState } from "../../store"
 
 type PrivateProps = {
-    isAuthenticated: boolean
     children: JSX.Element
 }
 
 const PrivateRoute = (props: PrivateProps) => {
 
-    if (props.isAuthenticated) {
+    const authStatus = useSelector((state: RootState) => state.authorizationStatus)
+
+    if (authStatus === AuthorizationStatus.Auth) {
         return props.children
 
     } else {

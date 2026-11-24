@@ -34,6 +34,13 @@ const filterVariants = [
     'Top rated first'
 ]
 
+const AuthorizationStatus = {
+  Unknown: 'Unknown',
+  Auth: 'Auth',
+  NoAuth: 'NoAuth',
+  
+} as const
+
 const URL_MARKER_DEFAULT = '/img/pin.svg'
 const URL_MARKER_CURRENT = '/img/pin-active.svg'
 
@@ -41,5 +48,6 @@ export {
     filterVariants,
     cities,
     URL_MARKER_CURRENT,
-    URL_MARKER_DEFAULT
+    URL_MARKER_DEFAULT,
+    AuthorizationStatus
 }
