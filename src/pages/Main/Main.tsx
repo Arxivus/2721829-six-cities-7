@@ -38,7 +38,6 @@ const MainPage = ({ offers }: MainPageProps) => {
     dispatch(filterOffers(filterName))
   }
 
-
   return (
 
     <div className="page page--gray page--main">

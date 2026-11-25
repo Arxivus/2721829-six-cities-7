@@ -5,6 +5,7 @@ type OffersStorage = {
   authorizationStatus: string,
   user: UserInfo | undefined,
   city: City | undefined,
+  currentOffer: Offer | undefined,
   offers: Offer[]
   filteredOffers: Offer[]
   activeMarker: Location | undefined
@@ -15,6 +16,7 @@ const offersState: OffersStorage = {
   authorizationStatus: 'Unknown',
   user: undefined,
   city: cities[0],
+  currentOffer: undefined,
   offers: [],
   filteredOffers: [],
   activeMarker: undefined,

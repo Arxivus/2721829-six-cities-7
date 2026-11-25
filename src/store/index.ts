@@ -20,5 +20,6 @@ type AppDispatch = typeof offersStore.dispatch
 export {
     offersStore,
     type RootState,
-    type AppDispatch
+    type AppDispatch,
+    apiAxios
 }

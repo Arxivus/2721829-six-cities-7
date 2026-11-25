@@ -48,7 +48,6 @@ const offersReducer = createReducer(offersState, (builder) => {
     .addCase(setUserData, (state, action) => {
       state.user = action.payload
     }) 
-
 })
 
 export {

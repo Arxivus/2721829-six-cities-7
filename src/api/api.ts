@@ -6,22 +6,25 @@ const timeout = 5000
 const APIRoutes = {
     Login: '/login',
     Offers: '/offers',
+    Offer: (id: string) => `/offers/${id}`,
     Favorite: '/favorite'
 
 } as const
 
 const createAPI = (): AxiosInstance => {
 
-    const api = axios.create({
-        baseURL: baseURL,
-        timeout: timeout,
-        headers: {
-            'X-Token': 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20='
+    const api = axios.create({ baseURL: baseURL, timeout: timeout })
+
+    api.interceptors.request.use((config) => {
+        const token = localStorage.getItem('six-cities-token')
+        if (token) {
+            config.headers['X-Token'] = token
         }
+        return config
     })
 
     return api
-} 
+}
 
 export {
     createAPI,

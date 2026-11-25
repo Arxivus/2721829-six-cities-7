@@ -1,12 +1,5 @@
-import { User } from "../../types/types"
+import { User, Review } from "../../types/types"
 
-type Review = {
-    id: string,
-    date: string,
-    user: User,
-    comment: string,
-    rating: number,
-}
 
 const ReviewItem = ({ id, date, user, comment, rating }: Review) => {
 

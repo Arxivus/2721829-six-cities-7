@@ -22,17 +22,21 @@ const Login = () => {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).+$/
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     const email = formData?.email
     const password = formData?.password
 
-    if (email && password && passwordPattern.test(password)) {
+    if (emailPattern.test(email) && passwordPattern.test(password)) {
       const result = await dispatch(logInAction({ email, password }))
+      console.log(email, password);
 
       if (logInAction.fulfilled.match(result)) {
         navigate(AppPaths.Main)
 
       }
+    } else {
+      console.log('Неверный логин или пароль');
     }
   }
 

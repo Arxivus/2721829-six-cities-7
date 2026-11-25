@@ -17,7 +17,8 @@ const AppPaths = {
   Main: '/',
   Login: '/login',
   Favorites: '/favorites',
-  Offer: '/offer/:id',
+  Offer: '/offer/:offerId',
+  NotFound: '*'
 
 } as const
 

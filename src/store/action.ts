@@ -1,6 +1,5 @@
 import { createAction } from "@reduxjs/toolkit"
 import { City, Offer, Location, UserInfo } from "../types/types"
-import { AuthorizationStatus } from "../const"
 
 const Actions = {
     CITY_CHANGE: "CITY_CHANGE",

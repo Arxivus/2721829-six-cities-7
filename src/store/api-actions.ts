@@ -34,6 +34,7 @@ const fetchAuthAction = createAsyncThunk<void, undefined, {
     try {
       const { data } = await api.get<UserInfo>(APIRoutes.Login)
       dispatch(changeAuthStatus(AuthorizationStatus.Auth))
+      dispatch(setUserData(data))
 
     } catch (e) {
 
@@ -55,14 +56,15 @@ const logInAction = createAsyncThunk<void, AuthData, {
   'user/login',
   async ({ email, password }, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.post<UserInfo>(APIRoutes.Login, { email, password } )
+      const { data } = await api.post<UserInfo>(APIRoutes.Login, { email, password })
       dispatch(changeAuthStatus(AuthorizationStatus.Auth))
       dispatch(setUserData(data))
+
+      localStorage.setItem('six-cities-token', data.token)
 
     } catch (e) {
 
       const error = e as AxiosError;
-      
       if (error.response?.status === 400) {
         dispatch(changeAuthStatus(AuthorizationStatus.NoAuth))
         console.log('data:', error.response?.data)

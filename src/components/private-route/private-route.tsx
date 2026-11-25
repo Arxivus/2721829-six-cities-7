@@ -9,7 +9,6 @@ type PrivateProps = {
 }
 
 const PrivateRoute = (props: PrivateProps) => {
-
     const authStatus = useSelector((state: RootState) => state.authorizationStatus)
 
     if (authStatus === AuthorizationStatus.Auth) {
